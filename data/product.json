@@ -1,0 +1,24 @@
+[
+  {
+    "_id": "",
+    "title": "",
+    "desc": "",
+    "mainImg": "",
+    "images": ["", "", ""],
+    "minBuy": "",
+    "maxBuy": "",
+    "available": "",
+    "price": "",
+    "model": "",
+    "features": [],
+    "reviews": [
+      {
+        "title": "",
+        "desc": "",
+        "rating": "",
+        "date": "",
+        "author": ""
+      }
+    ]
+  }
+]
