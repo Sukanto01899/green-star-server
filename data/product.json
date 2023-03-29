@@ -1,15 +1,451 @@
 [
   {
-    "_id": "",
-    "title": "",
-    "desc": "",
-    "mainImg": "",
-    "images": ["", "", ""],
-    "minBuy": "",
-    "maxBuy": "",
-    "available": "",
-    "price": "",
-    "model": "",
-    "features": []
+    "title": "1STPLAYER SP7 White Mid Tower RGB Gaming Case",
+    "description": "1STPLAYER SP7 White Mid Tower RGB Gaming Case has a front Panel with ARGB dancing bar with 305mm wide body chassis. The Gaming case supports a VGA card verticalplug, supports 12cm Fan 9PCs, supports 360 cooling and has double-sided tempered glass. This Mid Tower casing comes in various colors that include white black and pink. The Light Board of the PC can be controlled by sound and rhythm that make a melody dance. Which means just the sound wave can make the panel light bar jumping. The SP7 White Mid Tower Gaming Case has a reduced size but the capacity  of the casing is not compromised for any performance. It is included with VGA Card Slot 400mm that is compatible for ITX Motherboard and M-ATX Motherboard and ATX Motherboard. And, comes with HDD and SSD slot. Also, the cooler placements of the CPU casing is made to be perfect for the most heat dissipation with roof fan 120mmx3, support 360AIO water cooling, Rear fan 120mmx1, Front fan 120mmx2, supports 240AIO water cooling, also the Lower intake fan 120mmx3, supports 360AIO water cooling.",
+    "image": "https://www.startech.com.bd/image/cache/catalog/casing/1stplayer/sp7/sp7-01-500x500.webp",
+    "minBuy": 10,
+    "stock": 200,
+    "price": 26.89,
+    "model": "SP7",
+    "brand": "1STPLAYER",
+    "rating": 4,
+    "code": "27521",
+    "features": [
+      "Support 12CM Fan 9PCS",
+      "305MM Wide Body Chassis",
+      "Support 360 Cooling",
+      "Double-Sided Tempered Glass"
+    ],
+    "specification": [
+      {
+        "title": "Key Features",
+        "prop": [
+          {
+            "title": "Fan Size",
+            "features": [
+              "ON THE LEFT OF THE FRONT SIDE: 2*12CM",
+              "TOP: 3*12CM",
+              "REAR: 1*12CM",
+              "BOTTOM: 3*12CM"
+            ]
+          },
+          {
+            "title": "Others",
+            "features": [
+              "Liquid Cooling Support:",
+              "TOP: 36CM",
+              "FRONT: 24CM",
+              "BOTTOM: 36CM",
+              "PCI Card Slot: 7+3",
+              "I/O Panel: USB3.0*2+TYPE-C*1+HD AUDIO",
+              "CPU MAX Height: 185MM",
+              "VGA MAX Length:"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Output",
+        "prop": [
+          {
+            "title": "Total Power",
+            "features": [
+              "Power Supply Support:",
+              "BOTTOM MOUNT(LIMIT IS 200 MM LONG)"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "1STPLAYER X4 White Mid Tower RGB Gaming Case",
+    "description": "1STPLAYER SP7 White Mid Tower RGB Gaming Case has a front Panel with ARGB dancing bar with 305mm wide body chassis. The Gaming case supports a VGA card verticalplug, supports 12cm Fan 9PCs, supports 360 cooling and has double-sided tempered glass. This Mid Tower casing comes in various colors that include white black and pink. The Light Board of the PC can be controlled by sound and rhythm that make a melody dance. Which means just the sound wave can make the panel light bar jumping. The SP7 White Mid Tower Gaming Case has a reduced size but the capacity  of the casing is not compromised for any performance. It is included with VGA Card Slot 400mm that is compatible for ITX Motherboard and M-ATX Motherboard and ATX Motherboard. And, comes with HDD and SSD slot. Also, the cooler placements of the CPU casing is made to be perfect for the most heat dissipation with roof fan 120mmx3, support 360AIO water cooling, Rear fan 120mmx1, Front fan 120mmx2, supports 240AIO water cooling, also the Lower intake fan 120mmx3, supports 360AIO water cooling.",
+    "image": "https://www.startech.com.bd/image/cache/catalog/casing/1stplayer/x4-1stplayer/x4-white-01-500x500.webp",
+    "minBuy": 5,
+    "stock": 150,
+    "price": 32.59,
+    "model": "X4",
+    "brand": "1STPLAYER",
+    "rating": 4,
+    "code": "27521",
+    "features": [
+      "Form Factor: ATX/M-ATX",
+      "Left Side Panel: Tempered Glass",
+      "Liquid Cooling Support: 24CM",
+      "1x USB3.0 + 2x USB2.0 + HD AUDIO"
+    ],
+    "specification": [
+      {
+        "title": "Case Type",
+        "prop": [
+          {
+            "title": "Type",
+            "features": ["Mid Tower"]
+          },
+          {
+            "title": "Front Panel",
+            "features": ["METAL MESH COVER"]
+          },
+          {
+            "title": "Tempered Glass Panel",
+            "features": ["Yes"]
+          },
+          {
+            "title": "Motherboard Support ",
+            "features": ["YesATX/M-ATX"]
+          }
+        ]
+      },
+      {
+        "title": "External Features",
+        "prop": [
+          {
+            "title": "Color(s)",
+            "features": ["White"]
+          },
+          {
+            "Material": "",
+            "features": [
+              "SPCC 0.5MM",
+              "L&R side panel: Tempered Glass",
+              "Front side panel: Metal Mesh"
+            ]
+          },
+          {
+            "title": "Total Power",
+            "features": [
+              "Power Supply Support:",
+              "BOTTOM MOUNT(LIMIT IS 200 MM LONG)"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Additional Feature",
+        "prop": [
+          {
+            "title": "Cooling System",
+            "features": ["TOP: 240 MM"]
+          },
+          {
+            "title": "PSU",
+            "features": ["Not Included"]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "1STPLAYER X4 Mid Tower RGB Gaming Case",
+    "description": "1STPLAYER SP7 White Mid Tower RGB Gaming Case has a front Panel with ARGB dancing bar with 305mm wide body chassis. The Gaming case supports a VGA card verticalplug, supports 12cm Fan 9PCs, supports 360 cooling and has double-sided tempered glass. This Mid Tower casing comes in various colors that include white black and pink. The Light Board of the PC can be controlled by sound and rhythm that make a melody dance. Which means just the sound wave can make the panel light bar jumping. The SP7 White Mid Tower Gaming Case has a reduced size but the capacity  of the casing is not compromised for any performance. It is included with VGA Card Slot 400mm that is compatible for ITX Motherboard and M-ATX Motherboard and ATX Motherboard. And, comes with HDD and SSD slot. Also, the cooler placements of the CPU casing is made to be perfect for the most heat dissipation with roof fan 120mmx3, support 360AIO water cooling, Rear fan 120mmx1, Front fan 120mmx2, supports 240AIO water cooling, also the Lower intake fan 120mmx3, supports 360AIO water cooling.",
+    "image": "https://www.startech.com.bd/image/cache/catalog/casing/1stplayer/x4-1stplayer/x4-black-01-500x500.webp",
+    "minBuy": 8,
+    "stock": 300,
+    "price": 30.59,
+    "model": "X4",
+    "brand": "1STPLAYER",
+    "rating": 4,
+    "code": "27544",
+    "features": [
+      "Form Factor: ATX/M-ATX",
+      "Left Side Panel: Tempered Glass",
+      "Liquid Cooling Support: 24CM",
+      "1x USB3.0 + 2x USB2.0 + HD AUDIO"
+    ],
+    "specification": [
+      {
+        "title": "Case Type",
+        "prop": [
+          {
+            "title": "Type",
+            "features": ["Mid Tower"]
+          },
+          {
+            "title": "Front Panel",
+            "features": ["METAL MESH COVER"]
+          },
+          {
+            "title": "Tempered Glass Panel",
+            "features": ["Yes"]
+          },
+          {
+            "title": "Motherboard Support ",
+            "features": ["YesATX/M-ATX"]
+          }
+        ]
+      },
+      {
+        "title": "External Features",
+        "prop": [
+          {
+            "title": "Color(s)",
+            "features": ["Black"]
+          },
+          {
+            "Material": "",
+            "features": [
+              "SPCC 0.5MM",
+              "L&R side panel: Tempered Glass",
+              "Front side panel: Metal Mesh"
+            ]
+          },
+          {
+            "title": "Total Power",
+            "features": [
+              "Power Supply Support:",
+              "BOTTOM MOUNT(LIMIT IS 200 MM LONG)"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Additional Feature",
+        "prop": [
+          {
+            "title": "Cooling System",
+            "features": ["TOP: 240 MM"]
+          },
+          {
+            "title": "PSU",
+            "features": ["Not Included"]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Montech SKY TWO ATX Mid-Tower Casing",
+    "description": "1STPLAYER SP7 White Mid Tower RGB Gaming Case has a front Panel with ARGB dancing bar with 305mm wide body chassis. The Gaming case supports a VGA card verticalplug, supports 12cm Fan 9PCs, supports 360 cooling and has double-sided tempered glass. This Mid Tower casing comes in various colors that include white black and pink. The Light Board of the PC can be controlled by sound and rhythm that make a melody dance. Which means just the sound wave can make the panel light bar jumping. The SP7 White Mid Tower Gaming Case has a reduced size but the capacity  of the casing is not compromised for any performance. It is included with VGA Card Slot 400mm that is compatible for ITX Motherboard and M-ATX Motherboard and ATX Motherboard. And, comes with HDD and SSD slot. Also, the cooler placements of the CPU casing is made to be perfect for the most heat dissipation with roof fan 120mmx3, support 360AIO water cooling, Rear fan 120mmx1, Front fan 120mmx2, supports 240AIO water cooling, also the Lower intake fan 120mmx3, supports 360AIO water cooling.",
+    "image": "https://www.startech.com.bd/image/cache/catalog/casing/montech/sky-two/sky-two-01-500x500.webp",
+    "minBuy": 8,
+    "stock": 0,
+    "price": 36.99,
+    "model": "SKY TWO",
+    "brand": "Montech",
+    "rating": 3.4,
+    "code": "27544",
+    "features": [
+      "Form Factor: ATX/M-ATX",
+      "Left Side Panel: Tempered Glass",
+      "Liquid Cooling Support: 24CM",
+      "1x USB3.0 + 2x USB2.0 + HD AUDIO"
+    ],
+    "specification": [
+      {
+        "title": "Case Type",
+        "prop": [
+          {
+            "title": "Type",
+            "features": ["Mid Tower"]
+          },
+          {
+            "title": "Front Panel",
+            "features": ["METAL MESH COVER"]
+          },
+          {
+            "title": "Tempered Glass Panel",
+            "features": ["Yes"]
+          },
+          {
+            "title": "Motherboard Support ",
+            "features": ["YesATX/M-ATX"]
+          }
+        ]
+      },
+      {
+        "title": "External Features",
+        "prop": [
+          {
+            "title": "Color(s)",
+            "features": ["Black"]
+          },
+          {
+            "Material": "",
+            "features": [
+              "SPCC 0.5MM",
+              "L&R side panel: Tempered Glass",
+              "Front side panel: Metal Mesh"
+            ]
+          },
+          {
+            "title": "Total Power",
+            "features": [
+              "Power Supply Support:",
+              "BOTTOM MOUNT(LIMIT IS 200 MM LONG)"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Additional Feature",
+        "prop": [
+          {
+            "title": "Cooling System",
+            "features": ["TOP: 240 MM"]
+          },
+          {
+            "title": "PSU",
+            "features": ["Not Included"]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Montech SKY TWO Blue ATX Mid-Tower Casing",
+    "description": "1STPLAYER SP7 White Mid Tower RGB Gaming Case has a front Panel with ARGB dancing bar with 305mm wide body chassis. The Gaming case supports a VGA card verticalplug, supports 12cm Fan 9PCs, supports 360 cooling and has double-sided tempered glass. This Mid Tower casing comes in various colors that include white black and pink. The Light Board of the PC can be controlled by sound and rhythm that make a melody dance. Which means just the sound wave can make the panel light bar jumping. The SP7 White Mid Tower Gaming Case has a reduced size but the capacity  of the casing is not compromised for any performance. It is included with VGA Card Slot 400mm that is compatible for ITX Motherboard and M-ATX Motherboard and ATX Motherboard. And, comes with HDD and SSD slot. Also, the cooler placements of the CPU casing is made to be perfect for the most heat dissipation with roof fan 120mmx3, support 360AIO water cooling, Rear fan 120mmx1, Front fan 120mmx2, supports 240AIO water cooling, also the Lower intake fan 120mmx3, supports 360AIO water cooling.",
+    "image": "https://www.startech.com.bd/image/cache/catalog/casing/montech/sky-two-blue/sky-two-blue-01-500x500.webp",
+    "minBuy": 15,
+    "stock": 5,
+    "price": 33.99,
+    "model": "SKY TWO",
+    "brand": "Montech",
+    "rating": 3.9,
+    "code": "27544",
+    "features": [
+      "Form Factor: ATX/M-ATX",
+      "Left Side Panel: Tempered Glass",
+      "Liquid Cooling Support: 24CM",
+      "1x USB3.0 + 2x USB2.0 + HD AUDIO"
+    ],
+    "specification": [
+      {
+        "title": "Case Type",
+        "prop": [
+          {
+            "title": "Type",
+            "features": ["Mid Tower"]
+          },
+          {
+            "title": "Front Panel",
+            "features": ["METAL MESH COVER"]
+          },
+          {
+            "title": "Tempered Glass Panel",
+            "features": ["Yes"]
+          },
+          {
+            "title": "Motherboard Support ",
+            "features": ["YesATX/M-ATX"]
+          }
+        ]
+      },
+      {
+        "title": "External Features",
+        "prop": [
+          {
+            "title": "Color(s)",
+            "features": ["White"]
+          },
+          {
+            "Material": "",
+            "features": [
+              "SPCC 0.5MM",
+              "L&R side panel: Tempered Glass",
+              "Front side panel: Metal Mesh"
+            ]
+          },
+          {
+            "title": "Total Power",
+            "features": [
+              "Power Supply Support:",
+              "BOTTOM MOUNT(LIMIT IS 200 MM LONG)"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Additional Feature",
+        "prop": [
+          {
+            "title": "Cooling System",
+            "features": ["TOP: 240 MM"]
+          },
+          {
+            "title": "PSU",
+            "features": ["Not Included"]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Xtreme V3 Full Window Gaming Case",
+    "description": "1STPLAYER SP7 White Mid Tower RGB Gaming Case has a front Panel with ARGB dancing bar with 305mm wide body chassis. The Gaming case supports a VGA card verticalplug, supports 12cm Fan 9PCs, supports 360 cooling and has double-sided tempered glass. This Mid Tower casing comes in various colors that include white black and pink. The Light Board of the PC can be controlled by sound and rhythm that make a melody dance. Which means just the sound wave can make the panel light bar jumping. The SP7 White Mid Tower Gaming Case has a reduced size but the capacity  of the casing is not compromised for any performance. It is included with VGA Card Slot 400mm that is compatible for ITX Motherboard and M-ATX Motherboard and ATX Motherboard. And, comes with HDD and SSD slot. Also, the cooler placements of the CPU casing is made to be perfect for the most heat dissipation with roof fan 120mmx3, support 360AIO water cooling, Rear fan 120mmx1, Front fan 120mmx2, supports 240AIO water cooling, also the Lower intake fan 120mmx3, supports 360AIO water cooling.",
+    "image": "https://www.startech.com.bd/image/cache/catalog/casing/xtreme/v3-atx/v3-atx-01-500x500.jpg",
+    "minBuy": 5,
+    "stock": 20,
+    "price": 42.99,
+    "model": "V3",
+    "brand": "Xtreme",
+    "rating": 4.5,
+    "code": "27544",
+    "features": [
+      "Form Factor: ATX/M-ATX",
+      "Left Side Panel: Tempered Glass",
+      "Liquid Cooling Support: 24CM",
+      "1x USB3.0 + 2x USB2.0 + HD AUDIO"
+    ],
+    "specification": [
+      {
+        "title": "Case Type",
+        "prop": [
+          {
+            "title": "Type",
+            "features": ["Mid Tower"]
+          },
+          {
+            "title": "Front Panel",
+            "features": ["METAL MESH COVER"]
+          },
+          {
+            "title": "Tempered Glass Panel",
+            "features": ["Yes"]
+          },
+          {
+            "title": "Motherboard Support ",
+            "features": ["YesATX/M-ATX"]
+          }
+        ]
+      },
+      {
+        "title": "External Features",
+        "prop": [
+          {
+            "title": "Color(s)",
+            "features": ["White"]
+          },
+          {
+            "Material": "",
+            "features": [
+              "SPCC 0.5MM",
+              "L&R side panel: Tempered Glass",
+              "Front side panel: Metal Mesh"
+            ]
+          },
+          {
+            "title": "Total Power",
+            "features": [
+              "Power Supply Support:",
+              "BOTTOM MOUNT(LIMIT IS 200 MM LONG)"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Additional Feature",
+        "prop": [
+          {
+            "title": "Cooling System",
+            "features": ["TOP: 240 MM"]
+          },
+          {
+            "title": "PSU",
+            "features": ["Not Included"]
+          }
+        ]
+      }
+    ]
   }
 ]

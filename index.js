@@ -3,7 +3,7 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const verifyJwt = require('./middleware/verifyJwt');
 const sendSignupEmail = require('./email/email')
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config();
 const app = express();
 const port = process.env.port || 5000
@@ -12,7 +12,6 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/',(req, res)=> {
-    sendSignupEmail('sukanto01874@gmail.com', 'test', 'hi sukanto')
     res.send('Hello world')
 })
 
@@ -24,18 +23,13 @@ async function run(){
         const database = client.db('greenstar_DB');
         const product_collections = database.collection('products');
         const user_collections = database.collection('users');
-
-        // get jwt token
-        app.post('/token', async (req, res)=>{
-            const {email} = req.body;
-            const token = jwt.sign({email: email}, process.env.JWT_SECRET, {expiresIn: '1d'});
-            res.send(token)
-        })
+        const review_collection = database.collection('reviews')
 
         // Post a user data
-        app.put('/user',async (req, res)=>{
+        app.put('/user/:email',async (req, res)=>{
+            const userEmail = req.params.email
             const {name, email, uid, role, img} = req.body;
-            const filter = {email: email}
+            const filter = {email: userEmail}
             const option = {upsert: true};
             const updateUser = {
                 $set: {
@@ -43,7 +37,10 @@ async function run(){
                 }
             }
             const result =await user_collections.updateOne(filter, updateUser, option);
-            res.send(result)
+            if(result.matchedCount ===1){
+                const token = jwt.sign({email: email}, process.env.JWT_SECRET, {expiresIn: '1d'});
+                res.send(token)
+            }
         })
 
         // Post a product
@@ -51,6 +48,30 @@ async function run(){
             const product = req.body;
             const result = await product_collections.insertOne(product);
             res.send(result)
+        })
+
+
+        // Get All Product
+        app.get('/products', async (req, res)=>{
+            const query = {};
+            const allProducts =await product_collections.find(query).toArray();
+            res.send(allProducts)
+        })
+
+        // Get a product by id
+        app.get('/product/:id', async (req, res)=>{
+            const id = req.params.id;
+            const filter = {_id: new ObjectId(id)};
+            const result = await product_collections.findOne(filter);
+            res.send(result)
+        })
+
+        // Get review for product
+        app.get('/review/:id', async (req, res)=>{
+            const id = req.params.id;
+            const filter = {productId: id};
+            const result = await review_collection.find(filter).toArray();
+            res.send(result);
         })
     }
     finally{}
