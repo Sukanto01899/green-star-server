@@ -23,7 +23,8 @@ async function run(){
         const database = client.db('greenstar_DB');
         const product_collections = database.collection('products');
         const user_collections = database.collection('users');
-        const review_collection = database.collection('reviews')
+        const review_collection = database.collection('reviews');
+        const order_collection = database.collection('orders')
 
         // Post a user data
         app.put('/user/:email',async (req, res)=>{
@@ -72,6 +73,25 @@ async function run(){
             const filter = {productId: id};
             const result = await review_collection.find(filter).toArray();
             res.send(result);
+        })
+        // Post order details purchase button click
+        app.post('/order', async (req, res)=>{
+            const order = req.body;
+            const result = await order_collection.insertOne(order)
+            res.send(result)
+        })
+
+        // get all order
+        app.post('/order-list/:email',verifyJwt, async (req, res)=>{
+            const email = req.params.email;
+            const orderState = req.query.state;
+            const decodedEmail = req.decoded.email;
+            console.log(decodedEmail)
+            if(email === decodedEmail){
+                const cursor =await order_collection.find({userEmail: email}).toArray()
+                res.send(cursor)
+            }
+
         })
     }
     finally{}

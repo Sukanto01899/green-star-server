@@ -4,16 +4,17 @@ const verifyJwt = (req, res, next)=>{
     const auth = req.headers.authorization;
     console.log(auth)
     if(!auth){
-        return res.status(401).send({message: "Unathorized"})
+        return res.status(401).send({message: "Unauthorized"})
     }
     const token = auth.split(' ')[1];
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded)=>{
         if(err){
             return res.status(403).send({message: "Forbidden"})
         }
+        console.log('okk')
         req.decoded = decoded;
         next()
     })
 }
 
-module.exports = verifyJwt
+module.exports = verifyJwt;
