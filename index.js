@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const verifyJwt = require('./middleware/verifyJwt');
 const sendSignupEmail = require('./email/email')
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const verifyAdmin = require('./middleware/varifyAdmin');
 require('dotenv').config();
 const app = express();
 const port = process.env.port || 5000
@@ -39,7 +40,7 @@ async function run(){
             }
             const result =await user_collections.updateOne(filter, updateUser, option);
             if(result.matchedCount ===1){
-                const token = jwt.sign({email: email}, process.env.JWT_SECRET, {expiresIn: '1d'});
+                const token = jwt.sign({email: email, role: role}, process.env.JWT_SECRET, {expiresIn: '1d'});
                 res.send(token)
             }
         })
@@ -57,6 +58,18 @@ async function run(){
             const query = {};
             const allProducts =await product_collections.find(query).toArray();
             res.send(allProducts)
+        })
+        // Get All order for admin
+        app.get('/all-orders/:email', verifyJwt, verifyAdmin, async (req, res)=>{
+            const status = req.query.status
+            const query = {status: status};
+            if(status === 'all'){
+                const all_orders = await order_collection.find({}).toArray();
+                res.send(all_orders)
+            }else{
+                const all_orders = await order_collection.find(query).toArray();
+                res.send(all_orders)
+            }
         })
 
         // Get a product by id
@@ -81,18 +94,42 @@ async function run(){
             res.send(result)
         })
 
-        // get all order
+        // get order by user defined
         app.post('/order-list/:email',verifyJwt, async (req, res)=>{
             const email = req.params.email;
-            const orderState = req.query.state;
+            const orderStatus = req.query.status;
             const decodedEmail = req.decoded.email;
-            console.log(decodedEmail)
             if(email === decodedEmail){
-                const cursor =await order_collection.find({userEmail: email}).toArray()
-                res.send(cursor)
+                if(orderStatus === 'all'){
+                    const cursor =await order_collection.find({userEmail: email}).toArray();
+                    res.send(cursor);
+                }else{
+                    const cursor = await order_collection.find({userEmail: email, status: orderStatus}).toArray();
+                    res.send(cursor)
+                }
             }
-
         })
+
+        // ADmin login
+        app.get(`/admin-login/:email`, async (req, res)=>{
+            const email = req.params.email;
+            const query = {email: email};
+            const user = await user_collections.findOne(query);
+            if(user.role === 'admin'){
+                res.send({admin: true})
+            }else{
+                res.status(403).send({message: 'forbidden'})
+            }
+        })
+
+        // get all user
+        app.get(`/all-user/:email`, verifyJwt, verifyAdmin, async (req, res)=>{
+            const query = {};
+            const all_user = await user_collections.find(query).toArray();
+            res.send(all_user)
+        })
+
+        
     }
     finally{}
 };

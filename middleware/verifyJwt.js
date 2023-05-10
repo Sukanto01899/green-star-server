@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken')
 
 const verifyJwt = (req, res, next)=>{
     const auth = req.headers.authorization;
-    console.log(auth)
     if(!auth){
         return res.status(401).send({message: "Unauthorized"})
     }
@@ -11,7 +10,6 @@ const verifyJwt = (req, res, next)=>{
         if(err){
             return res.status(403).send({message: "Forbidden"})
         }
-        console.log('okk')
         req.decoded = decoded;
         next()
     })
