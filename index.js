@@ -53,7 +53,6 @@ async function run(){
             const email = req.params.email;
             const query = {email: email};
             const user = await user_collections.findOne(query);
-            console.log(user)
             if(user){
                 if(user.role === 'user'){
                     res.send({user: true})
@@ -75,7 +74,7 @@ async function run(){
         // Get All Product
         app.get('/products', async (req, res)=>{ //user api
             const query = {};
-            const allProducts =await product_collections.find(query).toArray();
+            const allProducts =await product_collections.find(query).limit(6).toArray();
             res.send(allProducts)
         })
         
@@ -102,21 +101,70 @@ async function run(){
         })
 
         // get order by user defined
-        app.post('/order-list/:email',verifyJwt, async (req, res)=>{ //user api
+        app.get('/order-list/:email',verifyJwt, async (req, res)=>{ //user api
             const email = req.params.email;
             const orderStatus = req.query.status;
             const decodedEmail = req.decoded.email;
-            if(email === decodedEmail){
+            if(decodedEmail === email){
                 if(orderStatus === 'all'){
-                    const cursor =await order_collection.find({userEmail: email}).toArray();
+                    const cursor = await order_collection.find({userEmail: email}).toArray();
                     res.send(cursor);
                 }else{
                     const cursor = await order_collection.find({userEmail: email, status: orderStatus}).toArray();
-                    res.send(cursor)
+                    res.send(cursor);
                 }
+            }else{
+                res.status(403).send({message: 'Forbidden'})
             }
         })
 
+        // Add review by user
+        app.put('/review/add/:email',verifyJwt, async(req, res)=>{
+            const email = req.params.email;
+            const review = req.body.review;
+            const filter = {}
+            const updateDoc = {
+                $set: {...review}
+            }
+            const option = {upsert: true}
+            const result = await review_collection.updateOne(filter, updateDoc, option);
+            res.send(result)
+        })
+
+        // Check review given or nor
+        app.get('/rating/check/:email/:id', async(req, res)=>{
+            const email = req.params.email;
+            const product_id = req.params.id;
+            const filter = {userId: email,productId: product_id};
+            const result = await review_collection.findOne(filter);
+            res.send(result)
+        })
+
+        // Get a product image
+        app.get('/product/image/:id', async (req, res)=>{
+            const product_id = req.params.id;
+            const query = {_id: new ObjectId(product_id)};
+            const image = await product_collections.findOne(query, {projection: {image: 1}})
+            res.send(image);
+        })
+
+        // cancel order status
+        app.patch('/order/cancel/:id',verifyJwt, async (req, res)=>{
+            const order_id = req.params.id;
+            const filter = {_id: new ObjectId(order_id)};
+            const updateDoc = {
+                $set: {status: 'canceled'}
+            }
+            const result = await order_collection.updateOne(filter, updateDoc)
+            res.send(result)
+        })
+
+        // Get all reviews
+        app.get('/reviews/get', async(req, res)=>{
+            const query = {};
+            const cursor =await review_collection.find(query).project({rating: 1, title: 1, desc: 1, user: 1}).toArray();
+            res.send(cursor)
+        })
         
 
 
@@ -136,7 +184,7 @@ app.get(`/admin-login/:email`, async (req, res)=>{
             res.status(403).send({message: 'forbidden'})
         }
     }else{
-        res.status(404).send({message: 'Not fund'})
+        res.status(404).send({message: 'Not found'})
     }
 })
 
@@ -158,7 +206,6 @@ app.get(`/all-user/:email`, verifyJwt, verifyAdmin, async (req, res)=>{
 app.post('/product/upload/:email', verifyJwt, verifyAdmin, async (req, res)=>{
     const product = req.body.product;
     const result = await product_collections.insertOne(product);
-    console.log(result)
     res.send(result)
 })
 
@@ -214,14 +261,13 @@ app.get('/all-order/:email', verifyJwt, verifyAdmin, async (req, res)=>{
         })
 
         // shipped order by admin
-        app.patch('/order/status-change/:id', async (req, res)=>{
+        app.patch('/order/status-change/:id',verifyJwt, verifyAdmin, async (req, res)=>{
             const order_id = req.params.id;
             const status = req.query.status;
             const filter = {_id: new ObjectId(order_id)};
             const updateDoc = {
                 $set: {status: status}
             }
-            console.log(order_id, status)
             const result = await order_collection.updateOne(filter, updateDoc)
             res.send(result)
         })
