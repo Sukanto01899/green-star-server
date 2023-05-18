@@ -106,14 +106,17 @@ async function run(){
         app.get('/order-list/:email',verifyJwt, async (req, res)=>{ //user api
             const email = req.params.email;
             const orderStatus = req.query.status;
+            const page = req.query.page;
+            const limit = req.query.limit;
             const decodedEmail = req.decoded.email;
             if(decodedEmail === email){
+                const total_order = (await order_collection({userEmail: email}).project({}).toArray()).length;
                 if(orderStatus === 'all'){
-                    const cursor = await order_collection.find({userEmail: email}).toArray();
-                    res.send(cursor);
+                    const cursor = await order_collection.find({userEmail: email}).limit(limit).skip(page * limit).toArray();
+                    res.send({cursor, total_order});
                 }else{
-                    const cursor = await order_collection.find({userEmail: email, status: orderStatus}).toArray();
-                    res.send(cursor);
+                    const cursor = await order_collection.find({userEmail: email, status: orderStatus}).limit(limit).skip(page * limit).toArray();
+                    res.send({cursor, total_order});
                 }
             }else{
                 res.status(403).send({message: 'Forbidden'})
