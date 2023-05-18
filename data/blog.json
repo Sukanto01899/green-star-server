@@ -1,0 +1,30 @@
+[
+  {
+    "title": "How improve the performance of a React Application?",
+    "des": " We can’t begin to optimize an app without knowing exactly when and where to optimize. You might be asking, “Where do we start?” During the initial rendering process, React builds a DOM tree of components. So, when data changes in the DOM tree, we want React to re-render only those components that were affected by the change, skipping the other components in the tree that were not affected. However, React could end up re-rendering all components in the DOM tree, even though not all are affected. This will result in longer loading time, wasted time, and even wasted CPU resources. We need to prevent this from happening. So, this is where we will focus our optimization effort. In this situation, we could configure every component to only render or diff when necessary, to avoid wasting resources and time.Never start the optimization process of your React application based on what you feel. Instead, use the measurement tools available to analyze the performance of your React app and get a detailed report of what might be slowing it down.",
+    "author": "Sukanto",
+    "time": "1-1-2013",
+    "authorImg": ""
+  },
+  {
+    "title": "What are the different ways to manage a state in a React application?",
+    "des": "React state management is a process for managing the data that React components need in order to render themselves. This data is typically stored in the component's state object. When the state object changes, the component will re-render itself. React state management is basically half of a React app. It includes all the data. The other half is the presentation including the HTML, CSS, and formatting. State and state management is relied on by presentation part of the app. The only time a React app will re-rendered is when state changes. We just published a full intermediate course on the freeCodeCamp.org YouTube channel that will teach you all about React State Management. Jack Herrington created this course. He is a principal full stack engineer and popular course creator. Here are all the sections included in this course:  useState, useReducer, useMemo & useCallback, useEffect, useRef, Context and Custom Hooks React Query & React Location, Zustand, Valtio, Jotai, Redux, The new use hook Recommendations Outroduction",
+    "author": "Sukanto",
+    "time": "1-1-2013",
+    "authorImg": ""
+  },
+  {
+    "title": "How does prototypical inheritance work?",
+    "des": "Every object with its methods and properties contains an internal and hidden property known as [[Prototype]]. The Prototypal Inheritance is a feature in javascript used to add methods and properties in objects. It is a method by which an object can inherit the properties and methods of another object. Traditionally, in order to get and set the [[Prototype]] of an object, we use Object.getPrototypeOf and Object.setPrototypeOf. Nowadays, in modern language, it is being set using __proto__. ",
+    "author": "Sukanto",
+    "time": "1-1-2013",
+    "authorImg": ""
+  },
+  {
+    "title": "What is a unit test? Why should write unit tests?",
+    "des": "Unit testing is a software development process in which the smallest testable parts of an application, called units, are individually scrutinized for proper operation. Software developers and sometimes QA staff complete unit tests during the development process. The main objective of unit testing is to isolate written code to test and determine if it works as intended. Unit testing is an important step in the development process. If done correctly, unit tests can detect early flaws in code which may be more difficult to find in later testing stages.Unit testing is a component of test-driven development (TDD), a pragmatic methodology that takes a meticulous approach to building a product by means of continual testing and revision. This testing method is also the first level of software testing, which is performed before other testing methods such as integration testing. Unit tests are typically isolated to ensure a unit does not rely on any external code or functions. Teams should perform unit tests frequently, either manually or more often automated.",
+    "author": "Sukanto",
+    "time": "1-1-2013",
+    "authorImg": ""
+  }
+]

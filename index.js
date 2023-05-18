@@ -5,6 +5,7 @@ const verifyJwt = require('./middleware/verifyJwt');
 const sendSignupEmail = require('./email/email')
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const verifyAdmin = require('./middleware/varifyAdmin');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 require('dotenv').config();
 const app = express();
 const port = process.env.port || 5000
@@ -25,7 +26,8 @@ async function run(){
         const product_collections = database.collection('products');
         const user_collections = database.collection('users');
         const review_collection = database.collection('reviews');
-        const order_collection = database.collection('orders')
+        const order_collection = database.collection('orders');
+        const blog_collection = database.collection('blogs');
 
 // All User api------------*******************
 // ----------------------------------------------------
@@ -165,6 +167,26 @@ async function run(){
             const cursor =await review_collection.find(query).project({rating: 1, title: 1, desc: 1, user: 1}).toArray();
             res.send(cursor)
         })
+
+        // get a order by id
+        app.get('/order/get/:id', verifyJwt, async(req, res)=>{
+            const id = req.params.id;
+            const query = {_id: new ObjectId(id)};
+            const result = await order_collection.findOne(query);
+            res.send(result)
+        })
+
+        // Order status change after payment success
+        app.patch('/payment/success/:id',verifyJwt, async(req, res)=> {
+            const id = req.params.id;
+            const trxID = req.body.trxID;
+            const filter = {_id: new ObjectId(id)};
+            const updateDoc = {
+                $set: {status: 'paid', trxID }
+            }
+            const result = await order_collection.updateOne(filter, updateDoc)
+            res.send(result)
+        })
         
 
 
@@ -253,15 +275,15 @@ app.get('/all-order/:email', verifyJwt, verifyAdmin, async (req, res)=>{
         })
 
         // Delete product by admin
-        app.delete('/product/delete/:id', async (req, res)=>{
+        app.delete('/product/delete/:id/:email',verifyJwt, verifyAdmin, async (req, res)=>{
             const product_id = req.params.id;
             const query = {_id: new ObjectId(product_id)};
             const result = await product_collections.deleteOne(query);
-            req.send(result)
+            res.send(result)
         })
 
-        // shipped order by admin
-        app.patch('/order/status-change/:id',verifyJwt, verifyAdmin, async (req, res)=>{
+        // change order status by admin
+        app.patch('/order/status-change/:email/:id',verifyJwt, verifyAdmin, async (req, res)=>{
             const order_id = req.params.id;
             const status = req.query.status;
             const filter = {_id: new ObjectId(order_id)};
@@ -270,6 +292,55 @@ app.get('/all-order/:email', verifyJwt, verifyAdmin, async (req, res)=>{
             }
             const result = await order_collection.updateOne(filter, updateDoc)
             res.send(result)
+        })
+
+        // User role change api
+        app.patch('/role/change/:email',verifyJwt, verifyAdmin, async(req, res)=>{
+            const email = req.body.email;
+            const userRole = req.query.role;
+            const filter = {email: email};
+            const updateDoc = {
+                $set:{role: userRole}
+            }
+            const result = await user_collections.updateOne(filter, updateDoc);
+            res.send(result)
+        })
+
+        // Post a blog
+        app.get('/blogs', async (req, res)=>{
+            const query = {};
+            const cursor = await blog_collection.find(query).toArray();
+            res.send(cursor)
+        })
+        // Post a blog
+        app.post('/blog/add/:email', async (req, res)=> {
+            const blog = req.body.blog;
+            const result = await blog_collection.insertOne(blog);
+            res.send(result)
+        })
+        // delete blog
+        app.delete('/blog/delete/:email/:id',verifyJwt, verifyAdmin, async(req, res)=>{
+            const id = req.params.id;
+            const query = {_id: new ObjectId(id)}
+            const result = await blog_collection.deleteOne(query)
+            res.send(result)
+        })
+
+
+        // Payment intent api
+        app.post('/create-payment-intent',verifyJwt, async(req, res)=>{
+            const order = req.body;
+            const price = order.price;
+            const amount = parseInt(price * 100);
+            const paymentIntent = await stripe.paymentIntents.create({
+                amount: amount,
+                currency: 'usd',
+                payment_method_types: ['card']
+            })
+
+            res.send({
+                clientSecret: paymentIntent.client_secret,
+              })
         })
 
         
