@@ -6,7 +6,7 @@ const sendEmail = require('./email/email')
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const verifyAdmin = require('./middleware/varifyAdmin');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const {paidEmail} = require('./email/PaidEmail')
+const {paidEmail, shippedEmail} = require('./email/PaidEmail')
 require('dotenv').config();
 const app = express();
 const port = process.env.port || 5000
@@ -324,8 +324,14 @@ app.get('/all-order/:email', verifyJwt, verifyAdmin, async (req, res)=>{
             const updateDoc = {
                 $set: {status: status}
             }
-            const result = await order_collection.updateOne(filter, updateDoc)
-            console.log(result)
+            const {userEmail, title, _id} = await order_collection.findOne(filter, {projection: {userEmail: 1, title: 1}});
+            const result = await order_collection.updateOne(filter, updateDoc);
+            const subject = 'Your Order is Shipped';
+            const shippedEmailCallback = ()=> shippedEmail(_id, {title});
+            if(userEmail && result.acknowledged){
+                console.log(userEmail)
+                sendEmail(userEmail, subject, shippedEmailCallback )
+            }
             res.send(result)
         })
 

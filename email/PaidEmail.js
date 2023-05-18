@@ -12,5 +12,16 @@ function paidEmail(id, product){
     )
 };
 
+function shippedEmail(id, product){
+    const {title} = product
+    return (
+        `
+        Your Order successfully shipped
+        Your order ID:- ${id}
+        Product Name: ${title}
+        Thanks
+        `
+    )
+};
 
-module.exports = {paidEmail}
+module.exports = {paidEmail, shippedEmail}
