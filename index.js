@@ -106,11 +106,11 @@ async function run(){
         app.get('/order-list/:email',verifyJwt, async (req, res)=>{ //user api
             const email = req.params.email;
             const orderStatus = req.query.status;
-            const page = req.query.page;
-            const limit = req.query.limit;
+            const page = parseInt(req.query.page);
+            const limit = parseInt(req.query.limit);
             const decodedEmail = req.decoded.email;
             if(decodedEmail === email){
-                const total_order = (await order_collection({userEmail: email}).project({}).toArray()).length;
+                const total_order = (await order_collection.find({userEmail: email}).project({}).toArray()).length;
                 if(orderStatus === 'all'){
                     const cursor = await order_collection.find({userEmail: email}).limit(limit).skip(page * limit).toArray();
                     res.send({cursor, total_order});
