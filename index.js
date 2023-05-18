@@ -2,10 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const verifyJwt = require('./middleware/verifyJwt');
-const sendSignupEmail = require('./email/email')
+const sendEmail = require('./email/email')
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const verifyAdmin = require('./middleware/varifyAdmin');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const {paidEmail} = require('./email/PaidEmail')
 require('dotenv').config();
 const app = express();
 const port = process.env.port || 5000
@@ -183,10 +184,17 @@ async function run(){
         app.patch('/payment/success/:id',verifyJwt, async(req, res)=> {
             const id = req.params.id;
             const trxID = req.body.trxID;
+            const email = req.query.email;
+            const title = req.body.title;
+            const price = req.body.price;
+            const quantity = req.body.quantity;
             const filter = {_id: new ObjectId(id)};
+            const emailSubject = 'Your Payment Successful'
+            const emailCallback = ()=> paidEmail(id, {title, price, quantity}); //Email text callback
             const updateDoc = {
                 $set: {status: 'paid', trxID }
             }
+            sendEmail(email, emailSubject, emailCallback) //Send Email
             const result = await order_collection.updateOne(filter, updateDoc)
             res.send(result)
         })
@@ -317,6 +325,7 @@ app.get('/all-order/:email', verifyJwt, verifyAdmin, async (req, res)=>{
                 $set: {status: status}
             }
             const result = await order_collection.updateOne(filter, updateDoc)
+            console.log(result)
             res.send(result)
         })
 
