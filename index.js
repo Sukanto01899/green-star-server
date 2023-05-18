@@ -193,10 +193,10 @@ async function run(){
             const email = req.params.email;
             const decodedEmail = req.decoded.email;
             if(email === decodedEmail){
-                const pending_order = (await order_collection.find({status: 'pending'}).project({}).toArray()).length;
-               const paid_order = (await order_collection.find({status: 'paid'}).project({}).toArray()).length;
-                const shipped_order = (await order_collection.find({status: 'shipped'}).project({}).toArray()). length;
-               const canceled_order = (await order_collection.find({status: 'shipped'}).project({}).toArray()).length;
+                const pending_order = (await order_collection.find({userEmail: email, status: 'pending'}).project({}).toArray()).length;
+               const paid_order = (await order_collection.find({userEmail: email, status: 'paid'}).project({}).toArray()).length;
+                const shipped_order = (await order_collection.find({userEmail: email, status: 'shipped'}).project({}).toArray()). length;
+               const canceled_order = (await order_collection.find({userEmail: email, status: 'canceled'}).project({}).toArray()).length;
 
                res.send({pending_order, paid_order, shipped_order, canceled_order})
             }else{
@@ -278,10 +278,10 @@ app.get('/all-order/:email', verifyJwt, verifyAdmin, async (req, res)=>{
             let total_sales = 0;
             orders.forEach(order => total_sales += order.price);
 
-            const pending_order = (await order_collection.find({status: 'pending'}).toArray()).length;
-            const paid_order = (await order_collection.find({status: 'paid'}).toArray()).length;
-            const shipped_order = (await order_collection.find({status: 'shipped'}).toArray()).length;
-            const canceled_order = (await order_collection.find({status: 'shipped'}).toArray()).length;
+            const pending_order = (await order_collection.find({status: 'pending'}).project({}).toArray()).length;
+            const paid_order = (await order_collection.find({status: 'paid'}).project({}).toArray()).length;
+            const shipped_order = (await order_collection.find({status: 'shipped'}).project({}).toArray()). length;
+            const canceled_order = (await order_collection.find({status: 'canceled'}).project({}).toArray()).length;
 
             const data = {
                 total_users: users,
