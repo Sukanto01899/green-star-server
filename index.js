@@ -187,7 +187,30 @@ async function run(){
             const result = await order_collection.updateOne(filter, updateDoc)
             res.send(result)
         })
-        
+
+        // User dashboard status
+        app.get('/user-dashboard/data/:email', verifyJwt, async(req, res)=>{
+            const email = req.params.email;
+            const decodedEmail = req.decoded.email;
+            if(email === decodedEmail){
+                const pending_order = (await order_collection.find({status: 'pending'}).project({}).toArray()).length;
+               const paid_order = (await order_collection.find({status: 'paid'}).project({}).toArray()).length;
+                const shipped_order = (await order_collection.find({status: 'shipped'}).project({}).toArray()). length;
+               const canceled_order = (await order_collection.find({status: 'shipped'}).project({}).toArray()).length;
+
+               res.send({pending_order, paid_order, shipped_order, canceled_order})
+            }else{
+                res.status(403).send({message: 'Forbidden'})
+            }
+        })
+
+        // Get single blog
+        app.get('/blog/:id', async(req, res)=>{
+            const id = req.params.id;
+            const query = {_id: new ObjectId(id)};
+            const result = await blog_collection.findOne(query);
+            res.send(result)
+        })
 
 
 //Admin Panel api-------------------------***********
